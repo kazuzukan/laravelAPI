@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="end">
+<head>
+    <title> Check API </title>
+</head>
+
+<body>
+    <button id="getUser"> Get User </button>
+    <div id="myData"></div>
+</body>
+
+<script>
+    const getButton = document.getElementById('getUser');
+    getButton.addEventListener('click', ()=> {
+        fetch('http://localhost:8001/api/mahasiswa')
+        .then(result => result.json())
+        .then(resData =>showData(resData))
+        .catch(err => console.log(err))
+    })
+
+    function showData(data) {
+        var datacontainer = document.getElementById("myData");
+        for(var i = 0; i<data.length; i++){
+            var name = document.createElement("li");
+            var lastname = document.createElement("p")
+            name.innerHTML = 'Name: ' + data[i].name + ' ' + data[i].npm;
+            lastname.innerHTML = 'Email: ' +data[i].hobby;
+            datacontainer.appendChild(name)
+            datacontainer.appendChild(lastname)
+        }
+    }
+</script>
+
+</html>
